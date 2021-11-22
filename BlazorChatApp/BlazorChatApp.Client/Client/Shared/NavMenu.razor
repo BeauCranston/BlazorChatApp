@@ -1,0 +1,30 @@
+﻿
+<div class="navbar">
+    <a class="brand align-text-bottom" href="/">
+        @if (BrandImage.Length > 0)
+        {
+            <img class="d-inline-block pb-1" src="@BrandImage" width="48" height="48" />
+        }
+        @Brand
+    </a>
+    <div>
+        <ul class="navbar-nav">
+            @foreach (var item in NavLinks)
+            {
+                <li class="nav-item">
+                    <NavLink class="nav-link" href=@item.Value>@item.Key</NavLink>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+
+@code{
+    [Parameter]
+    public string Brand { get; set; }
+    [Parameter]
+    public string? BrandImage { get; set; }
+    [Parameter]
+    public Dictionary<string,string> NavLinks { get; set; }
+}

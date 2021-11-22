@@ -1,0 +1,20 @@
+.brand {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-family: Dogica;
+}
+
+.navbar{
+    border-bottom: 2px solid var(--color-secondary);
+}
+.navbar-nav{
+    flex-direction:row;
+}
+.nav-link{
+    font-weight:700;
+    
+}
+.nav-item {
+    padding-left: 20px;
+    padding-right: 20px;
+}

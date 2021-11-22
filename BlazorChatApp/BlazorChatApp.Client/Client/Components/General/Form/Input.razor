@@ -1,0 +1,26 @@
+﻿<input class="form-control" type=@Type required=@Required @oninput="OnInputValueChanged" value=@inputValue/>
+
+@code {
+    private string? inputValue;
+    [Parameter]
+    public string? InputValue { get; set; }
+    //this event knows to update inputvalue automatically
+    [Parameter]
+    public EventCallback<string> InputValueChanged { get; set; }
+    [Parameter]
+    public string Type { get; set; }
+    [Parameter]
+    public string? Placeholder { get; set; }
+    [Parameter]
+    public string? Id { get; set; }
+    [Parameter]
+    public string Required { get; set; } = "";
+
+
+
+    private async Task OnInputValueChanged(ChangeEventArgs e)
+    {
+        inputValue = e?.Value?.ToString();
+        await InputValueChanged.InvokeAsync(inputValue);
+    }
+}

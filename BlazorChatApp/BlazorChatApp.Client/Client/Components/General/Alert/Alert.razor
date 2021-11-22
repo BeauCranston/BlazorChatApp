@@ -1,0 +1,13 @@
+﻿@using Components.General.Alert 
+@if (AlertModel.ShowAlert)
+{
+<div class="alert @AlertModel.GetAlertCSSClass()" role="alert">
+    @AlertModel.AlertMessage
+</div>
+}
+
+@code {
+    [Parameter]
+    public AlertModel AlertModel { get; set; }
+
+}

@@ -1,0 +1,19 @@
+﻿<form class="needs-validation @ToggleValidation(WasValidated)" novalidate>
+
+    @FormChildren
+    
+</form>
+
+@code {
+    [Parameter]
+    public bool WasValidated { get; set; } = false;
+
+    [Parameter]
+    public RenderFragment? FormChildren { get; set; }
+
+
+    private string ToggleValidation(bool validated)
+    {
+        return validated ? "was-validated" : string.Empty;
+    }
+}

@@ -1,0 +1,32 @@
+﻿<div class="form-group">
+    @if (!String.IsNullOrEmpty(Label))
+    {
+        <label class="col-form-label">@Label</label>
+    }
+    @FormControl
+
+   *@if (!String.IsNullOrEmpty(InvalidFeedBack))
+    {
+        <div class="invalid-feedback">
+            @InvalidFeedBack
+        </div>
+    }
+    @if (!String.IsNullOrEmpty(ValidFeedBack))
+    {
+        <div class="valid-feedback">
+            @ValidFeedBack
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string Label { get; set; } = "";
+    [Parameter]
+    public string InvalidFeedBack { get; set; } = "";
+    [Parameter]
+    public string ValidFeedBack { get; set; } = "";
+    [Parameter]
+    public RenderFragment? FormControl { get; set; }
+
+}

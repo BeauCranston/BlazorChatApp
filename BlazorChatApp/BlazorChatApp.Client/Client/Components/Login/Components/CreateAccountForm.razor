@@ -1,0 +1,49 @@
+﻿@using BlazorChatApp.Client.Components.General.Alert
+@using BlazorChatApp.Client.Components.General.Form
+
+@inject HttpClient http
+
+<div class="container">
+    <h3 class="text-center text-p">Create Account</h3>
+    <Form WasValidated=@validated>
+        <FormChildren>
+            <div class="row">
+                <div class="col">
+                    <FormGroup Label="Username:" InvalidFeedBack="Please enter Username" ValidFeedBack="Looks Good!">
+                        <FormControl>
+                            <Input Id="username" Type="text" Placeholder="Enter Username Eg. Beautie2" Required="required"  @bind-InputValue=@username/>
+                        </FormControl>
+                    </FormGroup>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <FormGroup Label="Password:" InvalidFeedBack="Password Required">
+                        <FormControl>
+                            <Input Id="password" Type="password" Required="required" @bind-InputValue=@password />
+                        </FormControl>
+                    </FormGroup>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <FormGroup Label="Confirm Password:" InvalidFeedBack="Password Must Match">
+                        <FormControl>
+                            <Input Id="confirmedPassword" Type="password" Required="required" @bind-InputValue=@confirmedPassword />
+                        </FormControl>
+                    </FormGroup>
+                </div>
+                <Alert AlertModel=@createAccountFormAlert />
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <button @onclick:preventDefault="true" @onclick=@CreateAccount class="btn-p btn-lg">Create Account</button>
+                </div>
+            </div>
+        </FormChildren>
+    </Form>
+</div>
+
+@code {
+
+}

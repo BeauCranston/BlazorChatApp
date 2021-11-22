@@ -1,0 +1,23 @@
+﻿@inherits LayoutComponentBase
+
+
+<div class="top-nav">
+    <NavMenu Brand="@brand" NavLinks="@navlinks" BrandImage="/images/blazor-chat-flame-small.png"/>
+</div>
+<div class="root">
+    @Body
+</div>
+
+
+
+
+@code {
+    private Dictionary<string, string> navlinks = new Dictionary<string, string>()
+    {
+        {"Login", "/login"},
+        {"Browse", "/browse"},
+        {"My Chats", "/chats"}
+    };
+
+    private string brand = "Blazor Chat";
+}

@@ -1,0 +1,44 @@
+﻿@page "/"
+@inject NavigationManager navigationManager
+<div class="container-fluid text-p text-center py-5">
+    <div class="row py-5">
+        <div class="col">
+            <h1 class="display-1">Welcome to Blazor Chat!</h1>
+        </div>
+
+    </div>
+    <div class="row py-5">
+        <div class="col">
+            <h2>Make some life long friends!</h2>
+        </div>
+    </div>
+    
+</div>
+<div class="container-fluid bg-p">
+    <div class="container pt-5 text-white">
+        <div class="row">
+            <div class="col-10 offset-1">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nibh ante, scelerisque ut tempus eu, pellentesque vitae velit. Quisque quis lacinia dui, eget suscipit turpis. Cras maximus et nisl ut lobortis. 
+                Vivamus hendrerit nulla a libero pulvinar hendrerit. Praesent aliquam accumsan nulla in tincidunt. Donec et ullamcorper diam. Curabitur commodo ipsum at sodales porttitor.
+
+                Nunc feugiat consectetur enim, nec luctus neque gravida ut. Nullam pretium a odio nec laoreet. Aliquam fermentum ornare eros id venenatis. Sed blandit lectus odio, sit amet convallis enim commodo nec. 
+                Quisque lectus ante, gravida at augue in, feugiat accumsan urna. Praesent volutpat euismod velit eget fringilla. Quisque et dignissim purus. Fusce pharetra mauris quis tellus suscipit lacinia. Morbi nec imperdiet elit. 
+                Mauris maximus finibus tristique. Suspendisse ornare lorem eget odio vestibulum malesuada. Mauris interdum hendrerit ultricies. Donec eu justo non nulla efficitur convallis eu eu sem.
+            </div>
+        </div>
+    </div>
+    <div class="row py-5">
+        <div class="col my-5 d-flex justify-content-center">
+            <button class="btn-s btn-lg rounded-pill">Create an Account</button>
+        </div>
+
+    </div>
+</div>
+
+@code{      
+    protected override void OnInitialized()
+    {
+        //if user is not logged in then navigate to the login page
+        navigationManager.NavigateTo("/login");
+    }
+}
