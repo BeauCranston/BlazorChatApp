@@ -13,7 +13,13 @@ namespace BlazorChatApp.Server
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = new HostBuilder().ConfigureAppConfiguration((host, builder) =>
+            {
+                if (host.HostingEnvironment.IsDevelopment())
+                    builder.AddUserSecrets<Program>();
+            }).Build();
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -1,19 +1,61 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+@font-face {
+    font-family: Gontserrat;
+    src:url("fonts/Gontserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: Dogica;
+    src: url("../fonts/dogica.ttf");
+}
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: Gontserrat;
+    padding:0;
+    margin:0;
 }
-
+:root {
+    --color-primary: #B15FAA;
+    --color-secondary: #00C2C0;
+    --color-secondary-shadow: #008B8B;
+}
+.bg-p{
+    background-color:var(--color-primary);
+}
+.text-p{
+    color: var(--color-primary);
+}
+.bg-s{
+    background-color: var(--color-secondary);
+}
+.text-s {
+    color: var(--color-secondary);
+}
 a, .btn-link {
-    color: #0366d6;
+    color: var(--color-secondary);
 }
 
-.btn-primary {
+.border-p {
+    border: 2px solid;
+    border-color: var(--color-primary);
+}
+.border-s {
+    border: 2px solid;
+    border-color: var(--color-sec);
+}
+.btn-p {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: var(--color-primary);
+    outline: none;
+    border:none;
 }
-
+.btn-s {
+    color: #fff;
+    background-color: var(--color-secondary);
+    outline: none;
+    border: none;
+}
 .content {
     padding-top: 1.1rem;
 }

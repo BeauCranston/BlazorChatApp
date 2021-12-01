@@ -1,3 +1,4 @@
+using BlazorChatApp.Server.Persistence.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,8 +23,9 @@ namespace BlazorChatApp.Server
         public string myAllowedOrigins = "_myAllowedOrigins";
         public void ConfigureServices(IServiceCollection services)
         {
-
+            var _dbConnection = Configuration["Database:ConnectionString"];
             services.AddControllers();
+            services.AddScoped<IConfiguration>();
             services.AddCors(options =>
             {
                 options.AddPolicy(name: myAllowedOrigins, builder =>
@@ -31,6 +33,7 @@ namespace BlazorChatApp.Server
                     builder.WithOrigins("https://localhost:5001", "http://localhost:5000").AllowAnyHeader().AllowAnyMethod();
                 });
             });
+            services.AddDbContext<BlazorChatDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
