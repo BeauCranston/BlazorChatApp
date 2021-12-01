@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorChatApp.Server.Persistence.Repositories
 {
-    public class ChatRoomRepository : GenericRepository<ChatRoomRepository>, IChatRoomRepository
+    public class ChatRoomRepository : GenericRepository<ChatRoom>, IChatRoomRepository
     {
         public ChatRoomRepository(BlazorChatDbContext context) : base(context)
         {

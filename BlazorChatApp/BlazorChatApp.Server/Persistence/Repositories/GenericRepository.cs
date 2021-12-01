@@ -9,38 +9,40 @@ namespace BlazorChatApp.Server.Persistence.Repositories
 {
     //Generic Repository to give crud functions to all entitys.
     //I plan to hide the implementation of this behind a service so that the application only talks to the service and not the repository directly
-    public class GenericRepository<TRepository> : IRepository<TRepository> where TRepository : class 
+    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class 
     {
         protected readonly BlazorChatDbContext _context;
-        protected DbSet<TRepository> dbset;
+        protected DbSet<TEntity> dbset;
         public GenericRepository(BlazorChatDbContext context)
         {
-           this._context = context;
-           this.dbset = context.Set<TRepository>();
+            _context = context;
+            dbset = context.Set<TEntity>();
         }
-        public IEnumerable<TRepository> GetAll()
+        public IEnumerable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public TRepository GetById(object id)
-        {
-            throw new NotImplementedException();
+            return dbset.ToList();
         }
 
-        public void Create(TRepository obj)
+        public TEntity GetById(object id)
         {
-            throw new NotImplementedException();
+            return dbset.Find(id);
+        }
+
+        public void Create(TEntity obj)
+        {
+            dbset.Add(obj);
         }
 
         public void Delete(object id)
         {
-            throw new NotImplementedException();
+            TEntity entityToDelete = dbset.Find(id);
+            dbset.Remove(entityToDelete);
         }
 
-        public void Update(TRepository obj)
+        public void Update(TEntity entityToUpdate)
         {
-            throw new NotImplementedException();
+            dbset.Attach(entityToUpdate);
+            _context.Entry(entityToUpdate).State = EntityState.Modified;
         }
     }
 }
