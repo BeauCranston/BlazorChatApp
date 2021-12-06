@@ -1,0 +1,38 @@
+﻿@page "/browse"
+@using BlazorChatApp.Client.Components.Browse
+
+
+<div class="container p-5">
+    <div class="container">
+        <h2>Browse</h2>
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Enter room name" />
+                <button class="btn btn-p input-group-append">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        @foreach(var room in rooms){
+            <RoomSearchResult RoomName=@room.ChatRoomName IsPrivate=@room.IsPrivate RoomSize=@room.RoomSize/>
+         }
+        
+    </div>
+</div>
+
+
+
+
+@code {
+    private List<ChatRoomDTO> rooms = new List<ChatRoomDTO>
+    {
+        new ChatRoomDTO{ChatRoomName="Cool room", IsPrivate=false, RoomSize=10},
+        new ChatRoomDTO{ChatRoomName="darg room", IsPrivate=true, RoomSize=12},
+        new ChatRoomDTO{ChatRoomName="come thru", IsPrivate=false, RoomSize=15},
+        new ChatRoomDTO{ChatRoomName="THA LOOUNGE", IsPrivate=false, RoomSize=10},
+        new ChatRoomDTO{ChatRoomName="YEEE", IsPrivate=false, RoomSize=10},
+        new ChatRoomDTO{ChatRoomName="Beaus room", IsPrivate=true, RoomSize=8},
+        new ChatRoomDTO{ChatRoomName="No girls allowed!!", IsPrivate=false, RoomSize=12},
+        new ChatRoomDTO{ChatRoomName="hooo boy!!!", IsPrivate=false, RoomSize=10}
+    };
+}

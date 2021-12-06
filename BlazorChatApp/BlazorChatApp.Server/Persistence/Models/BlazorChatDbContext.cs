@@ -71,6 +71,8 @@ namespace BlazorChatApp.Server.Persistence.Models
                 entity.Property(e => e.Password)
                     .HasMaxLength(100)
                     .HasColumnName("password");
+
+                entity.Property(e => e.RoomSize).HasColumnName("room_size");
             });
 
             modelBuilder.Entity<ChatRoomUser>(entity =>

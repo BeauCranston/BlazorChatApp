@@ -16,7 +16,7 @@ namespace BlazorChatApp.Server.Persistence.Models
         public string ChatRoomName { get; set; }
         public bool IsPrivate { get; set; }
         public string Password { get; set; }
-
+        public int RoomSize{ get; set; }
         public virtual ICollection<ChatRoomUser> ChatRoomUsers { get; set; }
     }
 }

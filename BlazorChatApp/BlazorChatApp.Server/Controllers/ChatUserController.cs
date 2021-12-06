@@ -2,6 +2,7 @@
 using BlazorChatApp.Server.Persistence;
 using BlazorChatApp.Server.Persistence.Models;
 using BlazorChatApp.Server.Persistence.Repositories;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,10 +14,12 @@ namespace BlazorChatApp.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors("_myAllowedOrigins")]
     public class ChatUserController : Controller
     {
         UnitOfWork unitOfWork = new UnitOfWork();
-        [HttpGet]
+        [HttpGet("{id}")]
+        
         public async Task<ActionResult<ChatUserDTO>> GetUser(int id)
         {
             var task = Task.Run(() => unitOfWork.ChatUserRepository.GetById(id));
@@ -30,16 +33,16 @@ namespace BlazorChatApp.Server.Controllers
             Console.WriteLine("amazing");
             return Ok(userDTO);
         }
-        [HttpGet]
-        public async Task<ActionResult<ChatUser>> GetUserByName(string username){
-            var task = Task.Run(() => unitOfWork.ChatUserRepository.GetById(username));
+        //[HttpGet]
+        //public async Task<ActionResult<ChatUser>> GetUserByName(string username){
+        //    var task = Task.Run(() => unitOfWork.ChatUserRepository.GetUserByUsername(username));
 
-            Console.WriteLine("The user is being retrieved");
-            Console.WriteLine("amazing");
-            ChatUser user = await task;
+        //    Console.WriteLine("The user is being retrieved");
+        //    Console.WriteLine("amazing");
+        //    ChatUser user = await task;
 
-            return Ok(user);
-        }
+        //    return Ok(user);
+        //}
 
         [HttpPost("login")]
         public async Task<ActionResult<ChatUser>> Login(ChatUser chatUser){

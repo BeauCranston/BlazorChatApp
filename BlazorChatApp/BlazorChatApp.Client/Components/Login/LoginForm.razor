@@ -30,6 +30,6 @@
 @code {
     public async void Login(){
         ChatUserDTO user = await httpClient.GetFromJsonAsync<ChatUserDTO>("https://localhost:8001/api/ChatUser/1");
-        Console.WriteLine(user);
+        Console.WriteLine(user.Username);
     }
 }

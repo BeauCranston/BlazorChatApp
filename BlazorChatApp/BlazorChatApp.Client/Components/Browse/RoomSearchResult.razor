@@ -1,0 +1,24 @@
+﻿<h3>RoomSearchResult</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <h3>@RoomName</h3>
+            <input class="custom-checkbox" type="checkbox" checked="@IsPrivate"/>
+        </div>
+        <div class="col-3">
+            <h1>0/@RoomSize</h1>
+            <button class="btn btn-s">Join Room</button>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string RoomName { get; set; }
+    [Parameter]
+    public int RoomSize { get; set; }
+    [Parameter]
+    public bool IsPrivate { get; set; }
+    
+}

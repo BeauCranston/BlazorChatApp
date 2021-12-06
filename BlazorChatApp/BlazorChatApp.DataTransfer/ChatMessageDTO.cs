@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BlazorChatApp.DataTransfer
 {
-    class ChatMessageDTO
+    public class ChatMessageDTO
     {
         public int ChatRoomUserId { get; set; }
         public string ChatMessageContent { get; set; }

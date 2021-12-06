@@ -3,15 +3,17 @@ using System;
 using BlazorChatApp.Server.Persistence.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace BlazorChatApp.Server.Migrations
+namespace BlazorChatApp.Server.Persistence.Migrations
 {
     [DbContext(typeof(BlazorChatDbContext))]
-    partial class BlazorChatDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211206175222_AddRoomSize")]
+    partial class AddRoomSize
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,8 +70,7 @@ namespace BlazorChatApp.Server.Migrations
                         .HasColumnName("password");
 
                     b.Property<int>("RoomSize")
-                        .HasColumnType("integer")
-                        .HasColumnName("room_size");
+                        .HasColumnType("integer");
 
                     b.HasKey("ChatRoomId");
 

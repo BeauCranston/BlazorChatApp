@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using BlazorChatApp.Client.Components.General.Alert;
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorChatApp.Client.Components.Login.Components
+namespace BlazorChatApp.Client.Components.Login
 {
     public partial class CreateAccountForm
     {

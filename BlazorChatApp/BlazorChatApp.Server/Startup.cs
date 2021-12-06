@@ -23,7 +23,6 @@ namespace BlazorChatApp.Server
         public string myAllowedOrigins = "_myAllowedOrigins";
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             services.AddCors(options =>
             {
                 options.AddPolicy(name: myAllowedOrigins, builder =>
@@ -32,6 +31,7 @@ namespace BlazorChatApp.Server
                 });
             });
             services.AddDbContext<BlazorChatDbContext>();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
