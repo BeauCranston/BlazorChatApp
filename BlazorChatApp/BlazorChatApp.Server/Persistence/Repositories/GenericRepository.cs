@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace BlazorChatApp.Server.Persistence.Repositories
@@ -18,14 +19,15 @@ namespace BlazorChatApp.Server.Persistence.Repositories
             _context = context;
             dbset = context.Set<TEntity>();
         }
-        public IEnumerable<TEntity> GetAll()
-        {
-            return dbset.ToList();
-        }
-
         public TEntity GetById(object id)
         {
             return dbset.Find(id);
+        }
+        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter)
+        {
+            if(filter != null)
+                dbset.Where(filter);
+            return dbset.ToList();
         }
 
         public void Create(TEntity obj)
@@ -44,5 +46,6 @@ namespace BlazorChatApp.Server.Persistence.Repositories
             dbset.Attach(entityToUpdate);
             _context.Entry(entityToUpdate).State = EntityState.Modified;
         }
+
     }
 }

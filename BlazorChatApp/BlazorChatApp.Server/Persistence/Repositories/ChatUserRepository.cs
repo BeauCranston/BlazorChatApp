@@ -12,9 +12,9 @@ namespace BlazorChatApp.Server.Persistence.Repositories
         {
         }
 
-        public void GetUserByUsername(string username)
+        public ChatUser GetUserByUsername(string username)
         {
-            throw new NotImplementedException();
+            return dbset.Where(user => user.Username.Equals(username)).FirstOrDefault();
         }
     }
 }

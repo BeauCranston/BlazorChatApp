@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace BlazorChatApp.Server.Persistence
 {
-    public interface IRepository<TRepository> where TRepository : class
+    public interface IRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TRepository> GetAll();
-        TRepository GetById(object id);
-        void Create(TRepository obj);
-        void Update(TRepository obj);
+        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter);
+        TEntity GetById(object id);
+        void Create(TEntity obj);
+        void Update(TEntity obj);
         void Delete(object id);
     }
 }

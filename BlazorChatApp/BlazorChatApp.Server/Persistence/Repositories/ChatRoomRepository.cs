@@ -12,19 +12,22 @@ namespace BlazorChatApp.Server.Persistence.Repositories
         {
         }
 
-        public void FilterPrivateRooms()
+        public IEnumerable<ChatRoom> GetPrivateRooms()
         {
-            throw new NotImplementedException();
+            return base.Get(room => room.IsPrivate == true);
         }
 
-        public void GetByRoomName(string roomName)
+        public ChatRoom GetByRoomName(string roomName)
         {
-            throw new NotImplementedException();
+            //get the room with the name passed in
+            return dbset.Where(room => room.ChatRoomName.Equals(roomName)).FirstOrDefault();
         }
 
-        public void GetRoomMembers()
+        public IEnumerable<ChatUser> GetRoomMembers(object id)
         {
-            throw new NotImplementedException();
+            //return the users from the room
+            return dbset.Find(id).ChatRoomUsers.Select(chatRoomUser => chatRoomUser.ChatUser);
         }
+
     }
 }

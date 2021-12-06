@@ -1,5 +1,6 @@
 ﻿using BlazorChatApp.DataTransfer;
-using BlazorChatApp.Server.Application;
+using BlazorChatApp.Server.Persistence;
+using BlazorChatApp.Server.Persistence.Models;
 using BlazorChatApp.Server.Persistence.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,34 +15,43 @@ namespace BlazorChatApp.Server.Controllers
     [Route("api/[controller]")]
     public class ChatUserController : Controller
     {
-        private readonly ILoginService _loginService;
-        private readonly IChatUserRepository _chatUserRepository;
-        public ChatUserController(ILoginService loginService, IChatUserRepository chatUserRepository)
+        UnitOfWork unitOfWork = new UnitOfWork();
+        [HttpGet]
+        public async Task<ActionResult<ChatUserDTO>> GetUser(int id)
         {
-            _chatUserRepository = chatUserRepository;
-            _loginService = loginService;
+            var task = Task.Run(() => unitOfWork.ChatUserRepository.GetById(id));
+            Console.WriteLine("The user is being retrieved");
+            ChatUser user = await task;
+            ChatUserDTO userDTO = new ChatUserDTO
+            {
+                Username = user.Username,
+                Password = user.Password
+            };
+            Console.WriteLine("amazing");
+            return Ok(userDTO);
         }
         [HttpGet]
-        public async Task GetUser(int id)
-        {
-            //await _chatUserRepository.GetUserById(id);
-            await _loginService.CreateNewAccountAsync();
-        }
-        [HttpGet]
-        public async Task GetUserByName(string username){
-            //await _chatUserRepository.GetUserByUsername(username);
-            await _loginService.CreateNewAccountAsync();
+        public async Task<ActionResult<ChatUser>> GetUserByName(string username){
+            var task = Task.Run(() => unitOfWork.ChatUserRepository.GetById(username));
+
+            Console.WriteLine("The user is being retrieved");
+            Console.WriteLine("amazing");
+            ChatUser user = await task;
+
+            return Ok(user);
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<ChatUser>> Login(ChatUserDTO chatUser){
-            ChatUser user =  await _loginService.LoginUser(chatUser);
-            return user;
+        public async Task<ActionResult<ChatUser>> Login(ChatUser chatUser){
+            
+            return Ok(chatUser);
         }
 
         [HttpPost("Create")]
-        public async Task CreateAccount(){
-            await _loginService.CreateNewAccountAsync();
+        public async Task<IActionResult> CreateAccount(ChatUser user){
+            var task = Task.Run(()=>unitOfWork.ChatUserRepository.Create(user));
+            await task;
+            return Ok("user ahas been created");
         }
 
 

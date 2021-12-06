@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace BlazorChatApp.Server.Migrations
+namespace BlazorChatApp.Server.Persistence.Migrations
 {
     [DbContext(typeof(BlazorChatDbContext))]
     [Migration("20211123152620_Initial")]

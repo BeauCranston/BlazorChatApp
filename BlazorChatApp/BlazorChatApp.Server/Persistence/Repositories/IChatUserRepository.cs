@@ -1,7 +1,9 @@
-﻿namespace BlazorChatApp.Server.Persistence.Repositories
+﻿using BlazorChatApp.Server.Persistence.Models;
+
+namespace BlazorChatApp.Server.Persistence.Repositories
 {
     public interface IChatUserRepository
     {
-        void GetUserByUsername(string username);
+        ChatUser GetUserByUsername(string username);
     }
 }

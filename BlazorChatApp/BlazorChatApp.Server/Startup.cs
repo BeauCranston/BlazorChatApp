@@ -23,9 +23,7 @@ namespace BlazorChatApp.Server
         public string myAllowedOrigins = "_myAllowedOrigins";
         public void ConfigureServices(IServiceCollection services)
         {
-            var _dbConnection = Configuration["Database:ConnectionString"];
             services.AddControllers();
-            services.AddScoped<IConfiguration>();
             services.AddCors(options =>
             {
                 options.AddPolicy(name: myAllowedOrigins, builder =>
