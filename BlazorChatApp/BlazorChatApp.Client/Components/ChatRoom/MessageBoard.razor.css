@@ -1,0 +1,6 @@
+﻿.message-container{
+    height:50vh;
+    overflow:hidden;
+    max-height:50vh; 
+    border: 2px solid #73737373
+}

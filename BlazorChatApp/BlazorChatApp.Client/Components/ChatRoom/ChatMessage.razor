@@ -1,0 +1,16 @@
+﻿
+
+@* need to implement user detection to change the color of messages sent by the user *@
+
+<div class="w-100 d-flex justify-content-end">
+    <div class="message-container">
+        <div>@ChatMessageContent</div>
+    </div>
+</div>
+
+
+@code {
+    private bool wasSentByLoggedInUser;
+    [Parameter]
+    public string ChatMessageContent { get; set; }
+}

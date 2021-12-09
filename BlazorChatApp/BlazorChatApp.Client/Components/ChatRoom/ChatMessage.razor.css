@@ -1,0 +1,14 @@
+﻿.message-container{
+    border-radius:10px;
+    font-family:Gontserrat;
+    padding:1.5rem;
+}
+
+
+
+.user-sent{
+    background-color: var(--color-secondary);
+    color:#DDD;
+}
+
+

@@ -11,11 +11,21 @@
                 <button class="btn btn-p input-group-append">Search</button>
             </div>
         </div>
+        <div class="row">
+            <div class="col-4">
+                <button class="btn btn-p">Create a Room</button>
+            </div>
+            
+        </div>
     </div>
     <div class="container">
-        @foreach(var room in rooms){
-            <RoomSearchResult RoomName=@room.ChatRoomName IsPrivate=@room.IsPrivate RoomSize=@room.RoomSize/>
-         }
+        <div class="row">
+            @foreach (var room in rooms)
+            {
+                <div class="col-6"><RoomSearchResult RoomName=@room.ChatRoomName IsPrivate=@room.IsPrivate RoomSize=@room.RoomSize /></div>
+            }
+        </div>
+        
         
     </div>
 </div>

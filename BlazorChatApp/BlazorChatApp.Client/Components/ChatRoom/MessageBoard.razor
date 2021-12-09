@@ -1,0 +1,24 @@
+﻿<div class="container">
+    <div class="message-container">
+        @foreach(var message in Messages){
+            <ChatMessage ChatMessageContent=@message.ChatMessageContent/>
+         }
+    </div>
+    <div class="form-group">
+        <div class="input-group-append">
+            <Input Type="text" Placeholder="Type New Message" />
+            <button class="btn btn-p">Send</button>
+        </div>
+    </div>
+    
+</div>
+
+@code {
+    private List<ChatMessageDTO> Messages = new List<ChatMessageDTO>
+    {
+        new ChatMessageDTO{ChatMessageContent="how is it going today?"},
+        new ChatMessageDTO{ChatMessageContent="pretty good what about you"},
+        new ChatMessageDTO{ChatMessageContent="I suppose its just one of those fun cheer days where you wake up and feel the positive ions in the air"},
+        new ChatMessageDTO{ChatMessageContent="Okayyyyyyy"},
+    };
+}
