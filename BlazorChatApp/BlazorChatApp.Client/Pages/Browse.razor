@@ -1,6 +1,6 @@
 ﻿@page "/browse"
 @using BlazorChatApp.Client.Components.Browse
-
+@attribute [Authorize]
 
 <div class="container p-5">
     <div class="container">
@@ -15,7 +15,7 @@
             <div class="col-4">
                 <button class="btn btn-p">Create a Room</button>
             </div>
-            
+
         </div>
     </div>
     <div class="container">
@@ -25,8 +25,8 @@
                 <div class="col-6"><RoomSearchResult RoomName=@room.ChatRoomName IsPrivate=@room.IsPrivate RoomSize=@room.RoomSize /></div>
             }
         </div>
-        
-        
+
+
     </div>
 </div>
 
@@ -35,7 +35,7 @@
 
 @code {
     private List<ChatRoomDTO> rooms = new List<ChatRoomDTO>
-    {
+{
         new ChatRoomDTO{ChatRoomName="Cool room", IsPrivate=false, RoomSize=10},
         new ChatRoomDTO{ChatRoomName="darg room", IsPrivate=true, RoomSize=12},
         new ChatRoomDTO{ChatRoomName="come thru", IsPrivate=false, RoomSize=15},

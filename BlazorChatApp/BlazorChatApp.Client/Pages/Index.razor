@@ -1,5 +1,5 @@
 ﻿@page "/"
-@inject NavigationManager navigationManager
+@*@inject NavigationManager navigationManager*@
 <div class="container-fluid text-p text-center py-5">
     <div class="row py-5">
         <div class="col">
@@ -9,7 +9,7 @@
     </div>
     <div class="row py-5">
         <div class="col">
-            <h2>Make some life long friends!</h2>
+            <h2>Make some life long friends! @_authMessage</h2>
         </div>
     </div>
     
@@ -29,7 +29,7 @@
     </div>
     <div class="row py-5">
         <div class="col my-5 d-flex justify-content-center">
-            <button class="btn-s btn-lg rounded-pill">Create an Account</button>
+            <button class="btn-s btn-lg rounded-pill" @onclick="LogUsername">Create an Account</button>
         </div>
 
     </div>
@@ -39,6 +39,29 @@
     protected override void OnInitialized()
     {
         //if user is not logged in then navigate to the login page
-        navigationManager.NavigateTo("/login");
+        //navigationManager.NavigateTo("/login");
+    }
+    /// <summary>
+    /// This cascading parameter is pulled from the CascadingAuthenticationState in app.razor. The way it works is the CustomAuthStateProvider is created as a service in  program.cs andd then 
+    /// is dependency injected into the CascadingAuthenticationState component which is then consumed by the app. This is how the app is provided with the state of the authentication.
+    /// </summary>
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    private string _authMessage;
+
+    private async Task LogUsername()
+    {
+        var authState = await authenticationStateTask;
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated)
+        {
+            _authMessage = $"{user.Identity.Name} is authenticated.";
+        }
+        else
+        {
+            _authMessage = $"The user is NOT authenticated. {user.Identity.Name}";
+        }
     }
 }

@@ -9,7 +9,8 @@ namespace BlazorChatApp.Server.Persistence.Models
 {
     public partial class BlazorChatDbContext : DbContext
     {
-        private readonly IConfiguration _config; 
+        private readonly IConfiguration _config;
+
         public BlazorChatDbContext()
         {
         }
@@ -36,7 +37,6 @@ namespace BlazorChatApp.Server.Persistence.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "English_United States.1252");
-
             modelBuilder.Entity<ChatMessage>(entity =>
             {
                 entity.ToTable("chat_message");

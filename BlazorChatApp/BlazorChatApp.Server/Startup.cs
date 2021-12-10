@@ -45,6 +45,7 @@ namespace BlazorChatApp.Server
 
             app.UseRouting();
             app.UseCors();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers().RequireCors(myAllowedOrigins);
